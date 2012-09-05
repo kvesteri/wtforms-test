@@ -1,7 +1,6 @@
 from wtforms import Field
 
 from wtforms.validators import Required, Length, Email, Optional, NumberRange
-from . import Unique
 
 
 class FormTestCase(object):
@@ -93,10 +92,12 @@ class FormTestCase(object):
         field = self._get_field(field_name)
         assert field.label.text == label
 
-    def assert_is_unique(self, field_name):
+    def assert_has_validator(self, field_name, validator):
         field = self._get_field(field_name)
-        msg = "Field '%s' not is unique." % field_name
-        assert self._get_validator(field, Unique), msg
+        msg = "Field '%s' does not have validator %r." % (
+            field_name, validator
+        )
+        assert self._get_validator(field, validator), msg
 
     def assert_is_not_optional(self, field_name):
         field = self._get_field(field_name)
