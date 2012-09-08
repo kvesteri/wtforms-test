@@ -40,7 +40,7 @@ class FormTestCase(object):
         msg = "Form does not have a field called '%s'." % field_name
         assert isinstance(field, Field), msg
 
-    def assert_field_min_value(self, field_name, min_value):
+    def assert_min(self, field_name, min_value):
         field = self._get_field(field_name)
         found = False
         for validator in field.validators:
@@ -50,7 +50,7 @@ class FormTestCase(object):
                     found = True
         assert found, "Field does not have min value of %d" % min_value
 
-    def assert_max_value(self, field_name, max_value):
+    def assert_max(self, field_name, max_value):
         field = self._get_field(field_name)
         found = False
         for validator in field.validators:
