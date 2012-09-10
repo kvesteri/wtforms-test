@@ -1,6 +1,8 @@
 from wtforms import Field
 
-from wtforms.validators import Required, Length, Email, Optional, NumberRange
+from wtforms.validators import (
+    DataRequired, Length, Email, Optional, NumberRange
+)
 
 
 class FormTestCase(object):
@@ -116,12 +118,12 @@ class FormTestCase(object):
     def assert_not_required(self, field_name):
         field = self._get_field(field_name)
         msg = "Field '%s' is required." % field_name
-        assert not self._get_validator(field, Required), msg
+        assert not self._get_validator(field, DataRequired), msg
 
     def assert_required(self, field_name):
         field = self._get_field(field_name)
         msg = "Field '%s' is not required." % field_name
-        assert self._get_validator(field, Required), msg
+        assert self._get_validator(field, DataRequired), msg
 
     def assert_email(self, field_name):
         field = self._get_field(field_name)
