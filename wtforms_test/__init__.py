@@ -109,6 +109,10 @@ class FormTestCase(object):
         msg = "Field '%s' is not optional." % field_name
         assert self._get_validator(field, Optional), msg
 
+    def assert_choices(self, field_name, choices):
+        field = self._get_field(field_name)
+        assert field.choices == choices
+
     def assert_not_required(self, field_name):
         field = self._get_field(field_name)
         msg = "Field '%s' is required." % field_name

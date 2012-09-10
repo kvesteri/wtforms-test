@@ -7,6 +7,7 @@ class ExampleForm(Form):
     text = fields.TextField()
     integer = fields.IntegerField()
     datetime = fields.DateTimeField()
+    select = fields.SelectField(choices=[(i, i) for i in xrange(5)])
 
 
 class TestFormTestCase(FormTestCase):
@@ -16,3 +17,6 @@ class TestFormTestCase(FormTestCase):
         self.assert_type('text', fields.TextField)
         self.assert_type('textarea', fields.TextAreaField)
         self.assert_type('integer', fields.IntegerField)
+
+    def test_assert_choices(self):
+        self.assert_choices('select', [(i, i) for i in xrange(5)])
