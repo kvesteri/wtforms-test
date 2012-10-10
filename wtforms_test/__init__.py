@@ -1,3 +1,4 @@
+import collections
 from wtforms import Field
 
 from wtforms.validators import (
@@ -104,7 +105,7 @@ class FormTestCase(object):
     def assert_not_optional(self, field_name):
         field = self._get_field(field_name)
         msg = "Field '%s' is optional." % field_name
-        assert not self._get_validator(field, Required), msg
+        assert not self._get_validator(field, DataRequired), msg
 
     def assert_optional(self, field_name):
         field = self._get_field(field_name)
@@ -114,6 +115,11 @@ class FormTestCase(object):
     def assert_choices(self, field_name, choices):
         field = self._get_field(field_name)
         assert field.choices == choices
+
+    def assert_choice_values(self, field_name, choices):
+        compare = lambda x, y: collections.Counter(x) == collections.Counter(y)
+        field = self._get_field(field_name)
+        assert compare(field.choices, choices)
 
     def assert_not_required(self, field_name):
         field = self._get_field(field_name)
