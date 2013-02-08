@@ -23,8 +23,8 @@ class PyTest(Command):
         raise SystemExit(errno)
 
 setup(
-    name='wtforms-test',
-    version='0.1.0',
+    name='WTForms-Test',
+    version='0.1.1',
     url='https://github.com/kvesteri/wtforms-test',
     license='BSD',
     author='Konsta Vesterinen',
