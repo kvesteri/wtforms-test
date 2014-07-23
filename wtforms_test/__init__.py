@@ -1,16 +1,22 @@
 import collections
 from wtforms import Field
+import unittest
 
 from wtforms.validators import (
     DataRequired, Length, Email, Optional, NumberRange
 )
 
 
-class FormTestCase(object):
+class FormTestCase(unittest.TestCase):
     form_class = None
 
-    def _make_form(self, *args, **kwargs):
-        return self.form_class(csrf_enabled=False, *args, **kwargs)
+    @classmethod
+    def setUpClass(cls):
+        cls.form = cls._make_form()
+
+    @classmethod
+    def _make_form(cls, *args, **kwargs):
+        return cls.form_class(csrf_enabled=False, *args, **kwargs)
 
     def _get_field(self, field_name):
         form = self._make_form()

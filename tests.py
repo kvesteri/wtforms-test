@@ -1,5 +1,8 @@
+#!/usr/bin/env python2
+
 from wtforms import Form, fields
 from wtforms_test import FormTestCase
+import unittest
 
 
 class ExampleForm(Form):
@@ -23,3 +26,6 @@ class TestFormTestCase(FormTestCase):
 
     def test_assert_choice_values(self):
         self.assert_choice_values('select', [(2, 2), (0, 0), (1, 1)])
+
+if __name__ == '__main__':
+    unittest.main()
